@@ -109,7 +109,7 @@ alert(result1);  //20
 
 ### 函数内部属性
 
-在函数内部，有两个特殊的对象：arguments和this。arguments是一个类数组对象，包含着传入函数中的所有参数。虽然arguments的主要倾吐式保存函数参数，但这个对象还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。请看下面这个非常经典的阶乘函数。
+在函数内部，有两个特殊的对象：arguments和this。arguments是一个类数组对象，包含着传入函数中的所有参数。虽然arguments的主要用途是保存函数参数，但这个对象还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。请看下面这个非常经典的阶乘函数。
 
 ```
 function factorial(num){
@@ -120,13 +120,13 @@ function factorial(num){
     }
 }
 ```
-定义阶乘函数一般都要用到递归算法；如上面的代码所示，在函数有名字，而且名字以后也不会变得情况下，这样定义没有问题。但问题是这个函数的执行与函数名factorial紧紧耦合在了一起。位置消除这种紧密耦合的现象。可以想下面这样使用arguments.clllee.
+定义阶乘函数一般都要用到递归算法；如上面的代码所示，在函数有名字，而且名字以后也不会变得情况下，这样定义没有问题。但问题是这个函数的执行与函数名factorial紧紧耦合在了一起。为了消除这种紧密耦合的现象。可以想下面这样使用arguments.callee.
 
 ```
 function factorial(num) {
     return 1;
 }else{
-    return num * argumentscallee(num-1)
+    return num * arguments.callee(num-1)
 }
 ```
 
@@ -141,4 +141,3 @@ alert(trueFactorial(5));  //120
 alert(factorial(5));   //0
 ```
 
-**函数内部的另一个特殊对象是this，其行为与Java和C#中的this大致类似。换句话说，this引用的是函数据以执行的环境对象--或者也可以说是this值（挡在网页的全局作用域总点用函数时，this对象引用的就是window）**
